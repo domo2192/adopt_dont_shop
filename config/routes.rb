@@ -34,6 +34,10 @@ Rails.application.routes.draw do
 
 
   # admin applications routes
+  get "admin/applications", to: "admin_applications#index"
   get "/admin/applications/:id", to: "admin_applications#show"
   post "/admin/applications/:id", to: "admin_applications#status"
+
+  #admin shelter routes
+  get "admin/shelters", to: "admin_shelters#index"
 end

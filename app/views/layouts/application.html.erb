@@ -7,7 +7,7 @@
 
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
-
+      </head>
   <header>
     <div class="nav-bar">
       <ul>
@@ -15,16 +15,16 @@
           <%= link_to "Go to Shelters", "/shelters" %>
           <%= link_to 'Go to Pets', "/pets" %>
           <%= link_to 'Go to Applications', "/applications" %>
+          <%= link_to 'Go to Admin_Applications', "/admin/applications" %>
+          <%= link_to 'Go to Admin_Shelters', "/admin/shelters" %>
   </header><br>
 
   <body>
     <ul id='errors'>
-    <%= flash.each do |type, messages| %>
-    <p <%= messages.each do |message| %> </p>
-    <li><%= message %></li>
-        <%end  %>
+    <%= flash.each do |type, message| %>
+    <p><%= message %></p>
     <%end %>
-    </ul> 
+    </ul>
     <%= yield %>
   </body>
 </html>

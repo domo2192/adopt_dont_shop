@@ -23,22 +23,20 @@ RSpec.describe 'When I visit an admin application show page' do
    end
 
    it "updates page and displays new result after button click" do
+
      approve = first(:button, "Approve")
      approve.click
-     expect(page).to have_content("Approved")
-     expect(first(:button, "Approve")).to_not eq(approve) #if the same button is still on the page, there is an issue
+     expect(page).to have_content("#{@pet1.name} Approved")
+     expect(first(:button, "Approve")).to_not eq(approve)
      first(:button, "Approve").click
-     expect(page).to have_content("Status: Approved")
+     expect(page).to have_content("Application Status: Pending")
 
      visit "/admin/applications/#{@jordan.id}"
-
-     reject = first(:button, "Reject")
+     reject = first(:button, "Reject", disabled:false)
      reject.click
      expect(page).to have_content("Rejected")
-     expect(first(:button, "Reject")).to_not eq(reject)
-     first(:button, "Reject").click
 
-     expect(page).to have_content("Status: Rejected")
+     expect(page).to have_content("Application Status: Rejected")
    end
 
 

@@ -17,7 +17,7 @@ RSpec.describe 'Applications show page' do
     #story test 2
   it "can show appplicant information" do
     visit "/applications/#{@dominic.id}"
-    within("#application-#{@dominic.id}") do
+    within "#application-#{@dominic.id}" do
       expect(page). to have_content(@dominic.name)
       expect(page). to have_content(@dominic.street)
       expect(page). to have_content(@dominic.city)
@@ -109,5 +109,5 @@ RSpec.describe 'Applications show page' do
     expect(page).to have_button("Adopt this Pet")
     click_button("Adopt this Pet")
     expect(page).to have_link(pet4.name)
-  end 
+  end
 end
