@@ -8,7 +8,7 @@ class AdminApplicationsController < ApplicationController
     @application = Application.find(params[:id])
   end
 
-  def status
+  def edit
      application_pet = ApplicationPet.where(pet_id: params[:pet],application_id: params[:id]).first
      application_pet.status = params[:decision]
      application_pet.pet.adoptable = false if params[:decision] == "Approved"

@@ -30,13 +30,13 @@ Rails.application.routes.draw do
   post "/applications", to: 'applications#create'
   patch "/applications/:id/update", to: "applications#update"
   patch "/applications/:id", to: 'applications#show'
-  patch "/applications/:id/adopt", to: "applications#adopt"
+  patch "/applications/:id/edit", to: "applications#edit"
 
 
   # admin applications routes
   get "admin/applications", to: "admin_applications#index"
   get "/admin/applications/:id", to: "admin_applications#show"
-  post "/admin/applications/:id", to: "admin_applications#status"
+  post "/admin/applications/:id", to: "admin_applications#edit"
 
   #admin shelter routes
   get "admin/shelters", to: "admin_shelters#index"

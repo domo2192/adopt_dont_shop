@@ -35,7 +35,7 @@
   <% @pets.each do |pet| %>
     <div id="pet-<%= pet.id %>">
     <h4><%= pet.name %></h4>
-    <%= button_to "Adopt this Pet", "/applications/#{@application.id}/adopt?pet_id=#{pet.id}", method: :patch %>
+    <%= button_to "Adopt this Pet", "/applications/#{@application.id}/edit?pet_id=#{pet.id}", method: :patch %>
   <%end %>
   <% else %>
   <%end %>
