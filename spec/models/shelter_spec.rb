@@ -24,4 +24,16 @@ describe Shelter, type: :model do
     expect(shelter1.count_adoptable).to eq(1)
     expect(shelter2.count_adoptable).to eq(1)
   end
+
+  it "should be able to find the average age of pets in the shelter" do
+    shelter1 = Shelter.create!(name: "Shady Shelter", address: "123 Shady Ave", city: "Denver", state: "CO", zip: 80011)
+    shelter2 = Shelter.create!(name: "Tilly Shelter", address: "123 Silly Ave", city: "Denver", state: "CO", zip: 80012)
+    shelter3 = Shelter.create!(name: "Furry Friends", address: "123 Silly Ave", city: "Denver", state: "CO", zip: 80012)
+    pet1 = shelter1.pets.create!(image:"", name: "Thor", description: "dog", approximate_age: 2, sex: "male")
+    pet1 = shelter1.pets.create!(image:"", name: "Thor", description: "dog", approximate_age: 3, sex: "male")
+    pet2 = shelter2.pets.create!(image:"", name: "Athena", description: "cat", approximate_age: 8, sex: "female")
+    pet3 = shelter2.pets.create!(image:"", name: "Athena", description: "cat", approximate_age: 4, sex: "female")
+    expect(shelter1.average_age).to eq(2.5)
+    expect(shelter2.average_age).to eq(6)
+  end
 end

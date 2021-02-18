@@ -12,7 +12,6 @@ RSpec.describe 'Create Shelter from index page' do
     click_link 'New Shelter'
 
     expect(current_path).to eq('/shelters/new')
-
     fill_in "name", with: 'Pa and Paws'
     fill_in "address", with: 'road avenue'
     fill_in "city", with: 'Pitt'
