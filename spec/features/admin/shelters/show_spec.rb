@@ -28,4 +28,13 @@ RSpec.describe 'When I visit an admin Shelter show page' do
    expect(page).to have_content("We have 2 adoptable pets")
 
  end
+
+ it "should show our users the average age of adoptable pets" do
+   shelter1 = Shelter.create!(name: "Shady Shelter", address: "123 Shady Ave", city: "Denver", state: "CO", zip: 80011)
+   pet1 = shelter1.pets.create!(image:"", name: "Thor", description: "dog", approximate_age: 5, sex: "male")
+   pet2 = shelter1.pets.create!(image:"", name: "Athena", description: "cat", approximate_age: 3, sex: "female")
+   pet3 = shelter1.pets.create!(image:"", name: "Athena", description: "cat", approximate_age: 1, sex: "female")
+   visit"/admin/shelters/#{shelter1.id}"
+   expect(page).to have_content("Our adoptable pets average age is: 3.0")
+ end
 end

@@ -11,7 +11,7 @@
 
 
 <section id="tell-us-why">
-  <% if @application.pets.count >= 1 %>
+  <% if @application.pets.count >= 1 %>  <!--this could be in model --->
   <%= form_tag "/applications/#{@application.id}/update", method: :patch do %>
   <%= label_tag :"Tell us why you would be a good owner for these pet(s)" %>
   <%= text_field_tag :description %>
@@ -23,7 +23,7 @@
 
 
 <section class="find-pet">
-  <% if @application.application_status == "In Progress" %>
+  <% if @application.application_status == "In Progress" %> <!-- this could be in model -->
   <%= form_with(url: "/applications/#{@application.id}", method: "patch", local: true) do |f| %>
      <h4><%= f.label "ADD A PET TO YOUR APPLICATION:" %></h4>
      <p><%= f.text_field :search, placeholder: "Search by name" %></p><br>

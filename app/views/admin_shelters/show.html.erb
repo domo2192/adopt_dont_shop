@@ -1,6 +1,7 @@
 <h1> Admin Shelter </h1>
   <section id="shelter-<%=@shelter.id%>">
-    <h2>Name: <%="#{@shelter.name}"%></h2>
-    Address: <%="#{@shelter.address}, #{@shelter.city}, #{@shelter.state}, #{@shelter.zip}"%> <br>
-
-    <h3> We have <%=@shelter.count_adoptable%> adoptable pets </h3> 
+  <h2>Name: <%="#{@shelter.name}"%></h2>
+  Address: <%="#{@shelter.address}, #{@shelter.city}, #{@shelter.state}, #{@shelter.zip}"%> <br>
+  <H3> Shelter Statistics </h3>
+  <h4> We have <%=@shelter.count_adoptable%> adoptable pets </h4>
+  <h4> Our adoptable pets average age is: <%= @shelter.average_age %> </h4> 
