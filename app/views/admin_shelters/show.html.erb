@@ -1,0 +1,6 @@
+<h1> Admin Shelter </h1>
+  <section id="shelter-<%=@shelter.id%>">
+    <h2>Name: <%="#{@shelter.name}"%></h2>
+    Address: <%="#{@shelter.address}, #{@shelter.city}, #{@shelter.state}, #{@shelter.zip}"%> <br>
+
+    <h3> We have <%=@shelter.count_adoptable%> adoptable pets </h3> 
