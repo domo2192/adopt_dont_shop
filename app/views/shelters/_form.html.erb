@@ -1,0 +1,13 @@
+<%= form_with url: path, method: method, local: true do |form| %>
+  <%= form.label :name %>
+  <%= form.text_field :name %><br>
+  <%= form.label :address %>
+  <%= form.text_field :address %><br>
+  <%= form.label :city %>
+  <%= form.text_field :city %><br>
+  <%= form.label :state %>
+  <%= form.text_field :state %><br>
+  <%= form.label :zip %>
+  <%= form.text_field :zip%><br>
+  <%= form.submit button_text%>
+<% end %>
