@@ -13,4 +13,15 @@ describe Shelter, type: :model do
     expect(expected).to eq([shelter3, shelter1, shelter2])
 
   end
+
+  it "should be able to find the count of adoptable pets" do
+    shelter1 = Shelter.create!(name: "Shady Shelter", address: "123 Shady Ave", city: "Denver", state: "CO", zip: 80011)
+    shelter2 = Shelter.create!(name: "Tilly Shelter", address: "123 Silly Ave", city: "Denver", state: "CO", zip: 80012)
+    shelter3 = Shelter.create!(name: "Furry Friends", address: "123 Silly Ave", city: "Denver", state: "CO", zip: 80012)
+    pet1 = shelter1.pets.create!(image:"", name: "Thor", description: "dog", approximate_age: 2, sex: "male")
+    pet2 = shelter2.pets.create!(image:"", name: "Athena", description: "cat", approximate_age: 3, sex: "female")
+    pet3 = shelter2.pets.create!(image:"", name: "Athena", description: "cat", approximate_age: 3, sex: "female", adoptable: "false")
+    expect(shelter1.count_adoptable).to eq(1)
+    expect(shelter2.count_adoptable).to eq(1)
+  end
 end
