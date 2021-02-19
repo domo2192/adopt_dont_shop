@@ -41,7 +41,7 @@ describe Application, type: :model do
     it "returns nothing until all pets are aproved" do
       ApplicationPet.first.update(status: :Approved)
       expect(@jordan.all_pets_approved).to eq(false)
-      expect(@jordan.evaluate).to eq(true)
+      expect(@jordan.evaluate).to eq(nil)
     end
 
     it "all pets rejected returns true if any pets are rejected" do
