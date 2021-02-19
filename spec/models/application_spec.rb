@@ -10,7 +10,6 @@ describe Application, type: :model do
     it { should validate_presence_of :name}
     it { should validate_presence_of :city}
     it { should validate_presence_of :state}
-    it { should validate_presence_of :description}
     it { should validate_presence_of :zip_code}
     it { should validate_numericality_of(:zip_code) }
   end
@@ -42,13 +41,27 @@ describe Application, type: :model do
     it "returns nothing until all pets are aproved" do
       ApplicationPet.first.update(status: :Approved)
       expect(@jordan.all_pets_approved).to eq(false)
-      expect(@jordan.evaluate).to eq(nil)
+      expect(@jordan.evaluate).to eq(true)
     end
 
     it "all pets rejected returns true if any pets are rejected" do
       ApplicationPet.first.update(status: :Approved)
       ApplicationPet.last.update(status: :Rejected)
       expect(@jordan.any_pets_rejected).to eq(true)
+    end
+
+  it "update updates the application pets status" do
+    ApplicationPet.first.update(status: :Approved)
+    ApplicationPet.last.update(status: :Approved)
+    @jordan.update(application_status: "Rejected")
+    expect(@jordan.application_status).to eq("Rejected")
+    end
+
+    it "update updates the application pets status" do
+      ApplicationPet.first.update(status: :Rejected)
+      ApplicationPet.last.update(status: :Rejected)
+      @jordan.update(application_status: "Approved")
+      expect(@jordan.application_status).to eq("Approved")
     end
   end
 end

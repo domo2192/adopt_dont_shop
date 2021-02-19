@@ -8,7 +8,7 @@ class Application < ApplicationRecord
   def evaluate
     if all_pets_approved
       update(application_status: "Approved")
-    elsif any_pets_rejected
+    else any_pets_rejected
       update(application_status: "Rejected")
     end
   end

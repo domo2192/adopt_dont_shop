@@ -71,4 +71,15 @@ describe Pet, type: :model do
     ApplicationPet.create!(application: jordan, pet: pet2)
     expect(pet1.application_result(jordan.id)).to eq(nil)
   end
+
+  it "can return results application_results for pets" do
+    jordan = Application.create!(name: "Jordan", street: "2300 West 28th Ave", city: "Denver", state: "Colorado", zip_code: 80211, description:"Own 10 dogs", application_status: "Approved" )
+    shelter1 = Shelter.create!(name: "Shady Shelter", address: "123 Shady Ave", city: "Denver", state: "CO", zip: 80011)
+    shelter2 = Shelter.create!(name: "Shady Shelter", address: "123 Shady Ave", city: "Denver", state: "CO", zip: 80011)
+    pet1 = shelter1.pets.create!(image:"", name: "Thor", description: "dog", approximate_age: 2, sex: "male")
+    pet2 = shelter2.pets.create!(image:"", name: "Athena", description: "cat", approximate_age: 3, sex: "female")
+    ApplicationPet.create!(application: jordan, pet: pet1)
+    ApplicationPet.create!(application: jordan, pet: pet2)
+    expect(pet1.pets_with_pending_apps).to eq(jordan.id)
+  end
 end
