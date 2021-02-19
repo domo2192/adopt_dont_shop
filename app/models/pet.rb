@@ -19,6 +19,6 @@ class Pet < ApplicationRecord
   end
 
   def pets_with_pending_apps
-    application_pets.where("status IS NULL")
+    application_pets.where("status IS NULL").first.application.id
   end
 end

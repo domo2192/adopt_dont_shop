@@ -24,9 +24,10 @@ RSpec.describe 'When I visit an admin Shelter show page' do
    ApplicationPet.create!(application: dominic, pet: pet1)
    ApplicationPet.create!(application: dominic, pet: pet2)
    visit"/admin/shelters/#{shelter2.id}"
-   expect(page).to have_content("We have 2 adoptable pets")
-
- end
+    within("#stats") do
+      expect(page).to have_content("We have 2 adoptable pets")
+    end
+  end
 
  it "should show our users the average age of adoptable pets" do
    shelter1 = Shelter.create!(name: "Shady Shelter", address: "123 Shady Ave", city: "Denver", state: "CO", zip: 80011)
@@ -34,7 +35,9 @@ RSpec.describe 'When I visit an admin Shelter show page' do
    pet2 = shelter1.pets.create!(image:"", name: "Athena", description: "cat", approximate_age: 3, sex: "female")
    pet3 = shelter1.pets.create!(image:"", name: "Athena", description: "cat", approximate_age: 1, sex: "female")
    visit"/admin/shelters/#{shelter1.id}"
+    within("#stats") do
    expect(page).to have_content("Our adoptable pets average age is: 3.0")
+  end
  end
 
  it "should show our users a count of adopted pets" do
@@ -42,10 +45,14 @@ RSpec.describe 'When I visit an admin Shelter show page' do
    pet1 = shelter1.pets.create!(image:"", name: "Thor", description: "dog", approximate_age: 5, sex: "male", adoptable: false)
    pet2 = shelter1.pets.create!(image:"", name: "Athena", description: "cat", approximate_age: 3, sex: "female")
    visit"/admin/shelters/#{shelter1.id}"
-   expect(page).to have_content("1 pet(s) adopted")
+     within("#stats") do
+       expect(page).to have_content("1 pet(s) adopted")
+     end
    pet3 = shelter1.pets.create!(image:"", name: "Larry", description: "cat", approximate_age: 1, sex: "female", adoptable:false)
    visit"/admin/shelters/#{shelter1.id}"
+    within("#stats") do
    expect(page).to have_content("2 pet(s) adopted")
+  end
  end
 
  it "should show the name of the pets who have not been adopted" do
@@ -61,9 +68,11 @@ RSpec.describe 'When I visit an admin Shelter show page' do
    ApplicationPet.create!(application: dominic, pet: pet2)
    ApplicationPet.create!(application: dominic, pet: pet3)
    visit"/admin/shelters/#{shelter1.id}"
-   expect(page).to have_content("#{pet1.name}")
-   expect(page).to have_content("#{pet2.name}")
-   expect(page).not_to have_content("#{pet3.name}")
+    within("#action") do
+      expect(page).to have_content("#{pet1.name}")
+      expect(page).to have_content("#{pet2.name}")
+      expect(page).not_to have_content("#{pet3.name}")
+    end
  end
 
  it "The name of the pets that have action required should be links that lead to application show page" do
@@ -79,10 +88,11 @@ RSpec.describe 'When I visit an admin Shelter show page' do
    ApplicationPet.create!(application: dominic, pet: pet2)
    ApplicationPet.create!(application: dominic, pet: pet3)
     visit"/admin/shelters/#{shelter1.id}"
-    view = first(:link, "View application")
+      within("#action") do
+    view = first(:link, "This App")
     view.click
     expect(current_path).to eq("/admin/applications/#{dominic.id}")
-
+  end
  end
 
 end

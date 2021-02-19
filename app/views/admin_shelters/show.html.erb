@@ -2,11 +2,17 @@
   <section id="shelter-<%=@shelter.id%>">
   <h2>Name: <%="#{@shelter.name}"%></h2>
   Address: <%="#{@shelter.address}, #{@shelter.city}, #{@shelter.state}, #{@shelter.zip}"%> <br>
+
+  <section id="stats">
   <H3> Shelter Statistics </h3>
   <h4> We have <%=@shelter.count_adoptable%> adoptable pets </h4>
   <h4> Our adoptable pets average age is: <%= @shelter.average_age %> </h4>
   <h4> <%= @shelter.adopted_pets %> pet(s) adopted </h4>
+  </section>
+
+  <section id="action">
   <h4> Action Required </h4>
   <% @shelter.pending_pets.each do |pet| %>
-  <li> <%= pet.name%> <%= link_to "View application", "/admin/applications/#{pet.pets_with_pending_apps.first.application.id}" %></li>
+  <li> <%= pet.name%> <%= link_to "This App", "/admin/applications/#{pet.pets_with_pending_apps}" %></li>
   <%end %>
+  </section>
