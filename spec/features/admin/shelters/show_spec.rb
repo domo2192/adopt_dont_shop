@@ -82,7 +82,6 @@ RSpec.describe 'When I visit an admin Shelter show page' do
     view = first(:link, "View application")
     view.click
     expect(current_path).to eq("/admin/applications/#{dominic.id}")
-    save_and_open_page
 
  end
 

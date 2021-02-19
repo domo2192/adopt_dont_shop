@@ -25,6 +25,7 @@ RSpec.describe 'When I visit an admin Shelter index page' do
    ApplicationPet.create!(application: dominic, pet: pet1)
    ApplicationPet.create!(application: dominic, pet: pet2)
    visit"/admin/shelters"
+   save_and_open_page
    within("#pending-apps-") do
      expect(page).to have_content(shelter1.name)
      expect(page).to have_content(shelter2.name)

@@ -5,9 +5,9 @@ class Shelter < ApplicationRecord
     order(name: :asc)
   end
 
-  def self.shelters_with_pending
-    joins(pets: :application_pets).where(status: nil)
-  end
+  # def self.shelters_with_pending
+  #
+  # end
 
   def count_adoptable
     pets.where("adoptable = 'true'").count
