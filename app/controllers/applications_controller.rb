@@ -37,7 +37,7 @@ class ApplicationsController < ApplicationController
     redirect_to "/applications/#{@application.id}"
   end
 
-  def edit 
+  def edit
    @application = Application.find(params[:id])
    pet = Pet.find(params[:pet_id])
    @application.pets << pet
@@ -47,7 +47,7 @@ class ApplicationsController < ApplicationController
 
   private
   def application_params
-    params.require(:application).permit(:name, :street, :city, :state, :zip_code, :description)
+    params.require(:application).permit(:name, :street, :city, :state, :zip_code)
   end
 
   def pet_search

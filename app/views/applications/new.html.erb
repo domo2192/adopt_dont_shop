@@ -1,16 +1,13 @@
 <%= form_with model: @application, action:"/applications",local: true do |form| %>
   <p> Name: </p>
   <%= form.text_field :name, placeholder: "Enter Name", :required => true %>
-    <p> Street: </p>
+  <p> Street: </p>
   <%= form.text_field :street, placeholder: "Enter Street Address", :required => true %>
-    <p> City: </p>
+  <p> City: </p>
   <%= form.text_field :city, placeholder: "Enter City", :required => true %>
-    <p> State: </p>
+  <p> State: </p>
   <%= form.text_field :state, placeholder: "Enter State", :required => true %>
-    <p> ZipCode: </p>
+  <p> ZipCode: </p>
   <%= form.text_field :zip_code , placeholder: "Enter Zipcode", :required => true %>
-  <p>Tell us why you would make a good home for these pets?</p>
-    <p> Description: </p>
-  <%= form.text_area :description, size: "70x5", :required => true  %>
   <%= form.submit "Submit" %>
 <% end %>
